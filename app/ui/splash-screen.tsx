@@ -4,7 +4,6 @@ import {ArrowRightIcon } from "@heroicons/react/24/outline";
 export function SplashScreen() {
     return (
         <>
-
           <div className="w-full h-52 flex gap-1">
             <Logo/>
           </div>

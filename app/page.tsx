@@ -8,7 +8,7 @@ export default function Home() {
               <SplashScreen/>
           </div>
           <div className="relative">
-            <Image src="/Daily-Sleeps.jpg" width={900} height={600} alt="daily-sleeps-screenshot" className="ml-5"/>
+            <Image src="/Daily-Sleeps.jpg" width={850} height={600} alt="daily-sleeps-screenshot" className="ml-5"/>
           </div>
         </main>
   )
