@@ -1,40 +1,43 @@
 "use client";
-import { 
-    Chart as Chartjs, 
-    CategoryScale, 
-    LinearScale, 
-    Legend, Tooltip, 
-    Title, BarElement} from "chart.js";
-import {Bar} from "react-chartjs-2";
+import {
+  Chart as Chartjs,
+  CategoryScale,
+  LinearScale,
+  Legend,
+  Tooltip,
+  Title,
+  BarElement,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 Chartjs.register(
-    CategoryScale,
-    LinearScale,
-    Legend,
-    Tooltip,
-    Title,
-    BarElement,
+  CategoryScale,
+  LinearScale,
+  Legend,
+  Tooltip,
+  Title,
+  BarElement
 );
 
-const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export const options = {
   responsive: true,
   scales: {
     y: {
-      ticks: { color: '#fff'},
+      ticks: { color: "#fff" },
     },
     x: {
-      ticks: { color: '#fff'}
-    }
+      ticks: { color: "#fff" },
+    },
   },
   color: "#fff",
-  font: {size: 20,weight: "bold", lineHeight: 2},
+  font: { size: 20, weight: "bold", lineHeight: 2 },
   plugins: {
     legend: {
-      position: 'top' as const,
+      position: "top" as const,
       align: "start",
-      labels: {color: "white"},
-      title: {color: "white",padding: 10}
+      labels: { color: "white" },
+      title: { color: "white", padding: 10 },
     },
     title: {
       display: true,
@@ -46,23 +49,26 @@ export const data = {
   labels,
   datasets: [
     {
-      label: 'Sleep Time',
+      label: "Sleep Time",
       pointStyle: "line",
       data: [8, 9, 10, 7, 5, 8, 9],
-      backgroundColor: '#08adee',
+      backgroundColor: "#08adee",
       hoverBackgroundColor: "#0060dd",
       barPercentage: 0.6,
-      barThickness: 'flex',
+      barThickness: "flex",
       borderRadius: 5,
-    }
+    },
   ],
 };
 export default function Graph() {
-    return <Bar 
-      about="sleep tracker chart" 
-      style={{width: "500px", height: "280px", borderLeft: "1px solid #08adee", borderBottom: "1px solid #08adee"}}
+  return (
+    <Bar
+      about="sleep tracker chart"
+      style={{ width: "500px", height: "280px" }}
       //@ts-ignore
-      data={data} options={options}
+      data={data}
+      //@ts-ignore
+      options={options}
     />
+  );
 }
-
