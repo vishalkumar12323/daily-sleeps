@@ -23,10 +23,7 @@ body {
 }
 
 @layer base {
-  .img-shadow {
-    --main-background: #142c41;
-    box-shadow: 10px 10px 0px 0px var(--main-background);
-    outline: none;
-    border: none;
+  .waving-trans {
+    transition: all 0.3s linear;
   }
 }

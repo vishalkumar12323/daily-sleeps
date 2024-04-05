@@ -1,3 +1,5 @@
+"use client";
+
 import { Logo } from "../../app-logo";
 import { Button } from "../button";
 

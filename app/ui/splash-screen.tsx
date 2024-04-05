@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "@/app/ui/app-logo";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
