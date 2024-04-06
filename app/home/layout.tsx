@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Navbar />
         </header>
         {children}
-        <footer className="pb-2">
+        <footer className="pb-2 border border-sky-400 rounded-md py-1">
           <Footer />
         </footer>
       </div>

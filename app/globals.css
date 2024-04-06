@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --main-background: #040507;
   --main-color: #fff;
   --select-background: #086cee;
 }
@@ -14,16 +13,8 @@
 }
 
 body {
-  background: var(--main-background);
-  color: var(--main-color);
   width: 100%;
   height: 100%;
   max-width: 1400px;
   margin: 0 auto;
-}
-
-@layer base {
-  .waving-trans {
-    transition: all 0.3s linear;
-  }
 }

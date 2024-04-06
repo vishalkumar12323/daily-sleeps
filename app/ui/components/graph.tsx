@@ -42,6 +42,9 @@ export const options = {
     title: {
       display: true,
     },
+    tooltip: {
+      backgroundColor: "#08adee",
+    },
   },
 };
 

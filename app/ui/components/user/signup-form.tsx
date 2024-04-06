@@ -5,7 +5,7 @@ import { Button } from "../button";
 
 export default function SignupForm() {
   return (
-    <section className="w-full h-full flex items-center justify-center py-3">
+    <section className="w-full h-full flex items-center justify-center py-3 mt-4">
       <div className="w-1/3 p-4 md:p-8 h-full flex justify-center items-center flex-col bg-[#222121]">
         <Logo />
         <form action="#" className="w-full mt-3">
