@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import ThemeMenu from "./theme";
+import ThemeMenu from "./theme-menu";
 
 export default function Footer() {
   return (
@@ -15,7 +15,7 @@ export default function Footer() {
             &copy;Copyright {new Date().getFullYear()}. All Right Reserverd{" "}
           </p>
           <p>
-            Software developed by{" "}
+            App developed by{" "}
             <Link href="#" className="text-sky-500">
               Vishal Kumar
             </Link>{" "}

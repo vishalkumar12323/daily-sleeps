@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "../button";
 
 export default function EntriesForm() {
@@ -42,7 +43,7 @@ export default function EntriesForm() {
             />
           </div>
           <div className="w-full py-2">
-            <Button children="create" className="px-10" />
+            <Button className="px-10">create</Button>
           </div>
         </form>
       </div>

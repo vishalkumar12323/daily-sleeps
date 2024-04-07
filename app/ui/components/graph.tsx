@@ -19,51 +19,59 @@ Chartjs.register(
   BarElement
 );
 
-const labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-export const options = {
-  responsive: true,
-  scales: {
-    y: {
-      ticks: { color: "#fff" },
-    },
-    x: {
-      ticks: { color: "#fff" },
-    },
-  },
-  color: "#fff",
-  font: { size: 20, weight: "bold", lineHeight: 2 },
-  plugins: {
-    legend: {
-      position: "top" as const,
-      align: "start",
-      labels: { color: "white" },
-      title: { color: "white", padding: 10 },
-    },
-    title: {
-      display: true,
-    },
-    tooltip: {
-      backgroundColor: "#08adee",
-    },
-  },
-};
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Sleep Time",
-      pointStyle: "line",
-      data: [8, 9, 10, 7, 5, 8, 9],
-      backgroundColor: "#08adee",
-      hoverBackgroundColor: "#0060dd",
-      barPercentage: 0.6,
-      barThickness: "flex",
-      borderRadius: 5,
-    },
-  ],
-};
 export default function Graph() {
+  let theme = "light";
+  const themeColor = theme === "dark" ? "white" : "black";
+  const labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const options = {
+    responsive: true,
+    scales: {
+      y: {
+        ticks: { color: themeColor },
+        grid: {
+          drawOnChartArea: false,
+        },
+      },
+      x: {
+        ticks: { color: themeColor },
+        grid: {
+          drawOnChartArea: false,
+        },
+      },
+    },
+    color: themeColor,
+    font: { size: 20, weight: "bold", lineHeight: 2 },
+    plugins: {
+      legend: {
+        position: "top" as const,
+        align: "start",
+        labels: { color: themeColor },
+        title: { color: themeColor, padding: 10 },
+      },
+      title: {
+        display: true,
+      },
+      tooltip: {
+        backgroundColor: "#08adee",
+      },
+    },
+  };
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Sleep Time",
+        pointStyle: "line",
+        data: [8, 9, 10, 7, 5, 8, 9],
+        backgroundColor: "#08adee",
+        hoverBackgroundColor: "#0060dd",
+        barPercentage: 0.6,
+        barThickness: "flex",
+        borderRadius: 5,
+      },
+    ],
+  };
   return (
     <Bar
       about="sleep tracker chart"

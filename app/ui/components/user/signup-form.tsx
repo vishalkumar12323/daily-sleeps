@@ -53,7 +53,9 @@ export default function SignupForm() {
             />
           </div>
           <div className="w-full mt-4">
-            <Button children="Create account" type="submit" className="px-10" />
+            <Button type="submit" className="px-10">
+              Create account
+            </Button>
           </div>
         </form>
       </div>

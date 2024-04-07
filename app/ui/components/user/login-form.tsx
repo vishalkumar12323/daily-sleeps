@@ -38,7 +38,9 @@ export default function LoginForm() {
             />
           </div>
           <div className="w-full mt-4">
-            <Button children="Login" type="submit" className="px-10" />
+            <Button type="submit" className="px-10">
+              Login
+            </Button>
           </div>
         </form>
       </div>

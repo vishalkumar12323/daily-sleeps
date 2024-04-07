@@ -1,3 +1,4 @@
+"use client";
 import { SplashScreen } from "@/app/ui/splash-screen";
 import Image from "next/image";
 import { ThemeProvider } from "next-themes";
