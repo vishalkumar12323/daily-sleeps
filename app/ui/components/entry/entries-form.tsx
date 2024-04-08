@@ -8,7 +8,7 @@ export default function EntriesForm() {
         <h2 className="text-xl md:text-2xl capitalize px-2">
           create new entry
         </h2>
-        <form action="#" className="py-1 px-2 w-full">
+        <form action="" className="py-1 px-2 w-full">
           <div className="w-full py-2">
             <div>
               <label htmlFor="date">Choose Date</label>
