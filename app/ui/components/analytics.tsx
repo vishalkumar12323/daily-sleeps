@@ -1,5 +1,4 @@
 "use client";
-import { graphData } from "@/app/lib/data";
 
 export default function Analytic() {
   const time = "06-04-2024";
