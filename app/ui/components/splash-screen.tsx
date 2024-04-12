@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Logo } from "@/app/ui/app-logo";
+import { Logo } from "@/app/ui/components/app-logo";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 export function SplashScreen() {
   return (
@@ -19,16 +19,16 @@ export function SplashScreen() {
 
       <div className="mt-8 flex flex-col gap-2 w-fit absolute bottom-5">
         <Link
-          href="/user/login"
+          href="/sign-in"
           className="flex items-center gap-1 py-[0.6rem] px-12 rounded-md bg-gradient-to-r from-yellow-600 to-red-600 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-red-500 transition-colors selection:bg-transparent"
         >
           <span>Login</span> <ArrowRightIcon className="w-5 md:w-6" />
         </Link>
         <Link
-          href="/user/signin"
+          href="/sign-up"
           className="flex items-center gap-1 py-[0.6rem] px-12 rounded-md bg-gradient-to-r from-yellow-600 to-red-600 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-red-500 transition-colors selection:bg-transparent"
         >
-          <span>Signin</span> <ArrowRightIcon className="w-5 md:w-6" />
+          <span>Signup</span> <ArrowRightIcon className="w-5 md:w-6" />
         </Link>
       </div>
     </>

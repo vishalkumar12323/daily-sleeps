@@ -1,5 +1,5 @@
 "use client";
-import { SplashScreen } from "@/app/ui/splash-screen";
+import { SplashScreen } from "@/app/ui/components/splash-screen";
 import Image from "next/image";
 
 export default function Home() {

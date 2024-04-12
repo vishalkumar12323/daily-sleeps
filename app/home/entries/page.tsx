@@ -1,4 +1,5 @@
-import EntriesForm from "@/app/ui/components/entry/entries-form";
+"use client";
+import EntriesForm from "@/app/ui/forms/entry-form";
 
 export default function Page() {
   return <EntriesForm />;

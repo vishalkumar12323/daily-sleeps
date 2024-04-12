@@ -9,6 +9,7 @@ import {
   BarElement,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import GraphSkeleton from "../skeletons/GraphSkeletons";
 
 Chartjs.register(
   CategoryScale,
@@ -82,4 +83,8 @@ export default function Graph() {
       options={options}
     />
   );
+}
+
+{
+  /* <GraphSkeleton /> */
 }

@@ -10,18 +10,20 @@ datasource db {
 
 model Entries {
   id         String   @id
-  date       DateTime @default(now()) @map("created_At")
+  date       DateTime @map("date")
   sleepTime  String   @map("sleep_time")
   wakeupTime String   @map("wakeup_time")
   author     User?    @relation(fields: [authorId], references: [id])
   authorId   String?
+
+  @@map("entries")
 }
 
 model User {
   id       String    @id
   name     String?
   email    String?   @unique
-  password String
+  password String?
   entry    Entries[]
 
   @@map("users")
