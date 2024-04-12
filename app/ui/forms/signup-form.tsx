@@ -45,7 +45,7 @@ export default function SignupForm() {
             <Input
               type="submit"
               value="signup"
-              className="py-2 px-10 rounded-md border border-gray-300  hover:border-gray-500 hover:bg-white hover:shadow-md transition-colors capitalize cursor-pointer"
+              className="py-2 px-10 w-full rounded-md border border-gray-300  hover:border-gray-500 hover:bg-white hover:shadow-md transition-colors capitalize cursor-pointer"
             />
           </div>
         </form>
