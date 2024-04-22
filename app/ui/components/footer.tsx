@@ -4,20 +4,14 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      <div className="py-4 h-16 flex justify-center items-center text-center flex-col gap-1 w-full">
-        <div>
-          <p>
-            <Link href="/" className="font-medium">
-              SLEEPEE.COM
-            </Link>{" "}
-            &copy;Copyright {new Date().getFullYear()}. All Right Reserverd{" "}
+      <div className="h-16 flex justify-center max-w-screen-lg mx-auto text-center flex-col gap-1 w-full">
+        <div className="flex justify-between items-center">
+          <p className="text-sm">
+            &copy; Copyright {new Date().getFullYear()}. All Right Reserverd{" "}
           </p>
-          <p>
-            App developed by{" "}
-            <Link href="#" className="font-medium">
-              Vishal Kumar
-            </Link>{" "}
-          </p>
+          <Link href="#" className="text-sm capitalize">
+            vishal kumar
+          </Link>
         </div>
       </div>
     </>

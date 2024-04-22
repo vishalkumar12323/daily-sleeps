@@ -1,21 +1,16 @@
+"use client";
 import Navbar from "@/app/ui/components/navbar";
 import Footer from "../ui/components/footer";
-import { fetchUser } from "@/app/lib/data";
 
-export default async function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const user = await fetchUser();
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className={`max-w-screen-lg mx-auto`}>
-        <header className="pt-3">
+      <div className="w-full">
+        <header className="bg-gray-50 shadow">
           <Navbar />
         </header>
         {children}
-        <footer className="mb-3 bg-gray-100 rounded-md">
+        <footer className="bg-gray-50">
           <Footer />
         </footer>
       </div>

@@ -2,13 +2,19 @@
 import clsx from "clsx";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode
+  children: React.ReactNode;
 }
 
-export function Button({children, className, ...rest}: ButtonProps) {
-    return (
-        <button {...rest} className={clsx(`py-2 uppercase rounded-md bg-gradient-to-r from-yellow-600 to-red-600 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-red-500 transition-colors`, className)}>
-            {children}
-        </button>
-    )
+export function Button({ children, className, ...rest }: ButtonProps) {
+  return (
+    <button
+      {...rest}
+      className={clsx(
+        `capitalize rounded-md transition-colors bg-black hover:bg-slate-900 focus:bg-slate-900 shadow-md py-3 px-10 text-white`,
+        className
+      )}
+    >
+      {children}
+    </button>
+  );
 }

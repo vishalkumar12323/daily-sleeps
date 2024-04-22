@@ -1,15 +1,53 @@
+"use client";
 import Link from "next/link";
 import Input from "./input";
 import Label from "./label";
 import Image from "next/image";
+import { lusitana } from "@/app/lib/fonts";
+import { FormEvent, useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { Button } from "../components/button";
+import { errorMessageProps, FormSchema } from "@/app/lib/definitions";
+import InputError from "./input-error";
 
 export default function LoginForm() {
-  return (
-    <section className="w-full h-[100vh] flex justify-center items-center">
-      <div className="w-[40%] h-[70%] bg-gray-100 rounded-md p-3">
-        <h3 className="text-2xl capitalize font-medium mt-3">Login</h3>
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<errorMessageProps>();
 
-        <form action="" className="mt-5 w-full">
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    const validateForm = FormSchema.omit({ name: true }).safeParse({
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    });
+
+    if (!validateForm.success) {
+      return setErrorMessage(validateForm.error.flatten().fieldErrors);
+    }
+
+    const { email, password } = validateForm.data;
+    const response = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (response?.ok) {
+      router.replace("/home");
+      router.refresh();
+    }
+  };
+  return (
+    <section
+      className={`${lusitana.className} w-full h-[100vh] flex justify-center items-center`}
+    >
+      <div className="w-[90%] md:w-[34%] h-auto bg-gray-100 rounded-md p-3">
+        <h3 className="text-2xl font-normal mt-3">Log in to continue</h3>
+
+        <form onSubmit={handleSubmit} method="POST" className="mt-2 w-full">
           <div className="py-3">
             <Label htmlFor="email">email</Label>
             <Input
@@ -17,9 +55,10 @@ export default function LoginForm() {
               id="email"
               name="email"
               placeholder="Enter Your email"
-              aria-describedby="input-email"
-              className="w-full py-2 px-2 rounded-md outline-none focus:border focus:border-gray-500 focus:bg-white focus:shadow-md transition-colors"
+              aria-describedby="email"
+              errormessage={errorMessage?.email}
             />
+            <InputError id="email" error={errorMessage?.email} />
           </div>
           <div className="py-2">
             <Label htmlFor="password">password</Label>
@@ -28,32 +67,26 @@ export default function LoginForm() {
               id="password"
               name="password"
               placeholder="password"
-              aria-describedby="input-password"
-              className="w-full py-2 px-2 rounded-md outline-none focus:border focus:border-gray-500 focus:bg-white focus:shadow-md transition-colors"
+              aria-describedby="password"
+              errormessage={errorMessage?.password}
             />
+            <InputError id="password" error={errorMessage?.password} />
           </div>
           <div className="py-3 mt-1">
-            <Input
-              type="submit"
-              value="login"
-              className="py-2 px-10 w-full rounded-md border border-gray-300  hover:border-gray-500 hover:bg-white hover:shadow-md transition-colors capitalize cursor-pointer"
-            />
-          </div>
-          <div className="py-3 w-full">
-            <Link
-              href="#"
-              className="py-2 text-center px-10 w-full rounded-md border border-gray-300  hover:border-gray-500 hover:bg-white hover:shadow-md transition-colors capitalize cursor-pointer flex justify-center items-center gap-2"
-            >
-              <Image
-                src="/google.svg"
-                width={20}
-                height={20}
-                alt="google icon"
-              />{" "}
-              countinue with google
-            </Link>
+            <Button type="submit" className=" w-full">
+              Login
+            </Button>
           </div>
         </form>
+        <div className="py-3 w-full">
+          <Button
+            className="w-full flex justify-center items-center gap-2"
+            onClick={() => signIn("google")}
+          >
+            <Image src="/google.svg" width={20} height={20} alt="google icon" />{" "}
+            continue with google
+          </Button>
+        </div>
       </div>
     </section>
   );

@@ -9,11 +9,11 @@ datasource db {
 }
 
 model Entries {
-  id         String   @id
-  date       DateTime @map("date")
-  sleepTime  String   @map("sleep_time")
-  wakeupTime String   @map("wakeup_time")
-  author     User?    @relation(fields: [authorId], references: [id])
+  id         String  @id
+  date       String  @map("date")
+  sleepTime  String  @map("sleep_time")
+  wakeupTime String  @map("wakeup_time")
+  author     User?   @relation(fields: [authorId], references: [id])
   authorId   String?
 
   @@map("entries")

@@ -9,7 +9,8 @@ import {
   BarElement,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import GraphSkeleton from "../skeletons/GraphSkeletons";
+import { UserSleepData } from "@/app/lib/definitions";
+import { getSleepData } from "@/app/lib/utils";
 
 Chartjs.register(
   CategoryScale,
@@ -20,40 +21,55 @@ Chartjs.register(
   BarElement
 );
 
-export default function Graph() {
-  let theme = "light";
-  const themeColor = theme === "dark" ? "white" : "black";
+export default function Graph({
+  userSleepData,
+}: {
+  userSleepData: UserSleepData[] | undefined;
+}) {
+  const values = userSleepData?.map((value) => {
+    const {
+      sleepDuration: { hours, minutes },
+    } = getSleepData(
+      value.date as string,
+      value.sleepTime as string,
+      value.wakeupTime as string
+    );
+
+    const minuteInPoints = minutes / 100;
+    const minuteDuration = hours + minuteInPoints;
+    return minuteDuration;
+  });
   const labels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const options = {
     responsive: true,
     scales: {
       y: {
-        ticks: { color: themeColor },
+        ticks: { color: "black" },
         grid: {
           drawOnChartArea: false,
         },
       },
       x: {
-        ticks: { color: themeColor },
+        ticks: { color: "black" },
         grid: {
           drawOnChartArea: false,
         },
       },
     },
-    color: themeColor,
+    color: "white",
     font: { size: 20, weight: "bold", lineHeight: 2 },
     plugins: {
       legend: {
         position: "top" as const,
         align: "start",
-        labels: { color: themeColor },
-        title: { color: themeColor, padding: 10 },
+        labels: { color: "black" },
+        title: { color: "black", padding: 10 },
       },
       title: {
         display: true,
       },
       tooltip: {
-        backgroundColor: "#08adee",
+        backgroundColor: "#030211",
       },
     },
   };
@@ -64,9 +80,9 @@ export default function Graph() {
       {
         label: "Sleep Time",
         pointStyle: "line",
-        data: [8, 9, 10, 7, 5, 8, 9],
-        backgroundColor: "#08adee",
-        hoverBackgroundColor: "#0060dd",
+        data: values,
+        backgroundColor: "black",
+        hoverBackgroundColor: "#030211",
         barPercentage: 0.6,
         barThickness: "flex",
         borderRadius: 5,

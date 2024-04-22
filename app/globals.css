@@ -2,14 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --main-color: #fff;
-  --select-background: #086cee;
-}
-
 ::selection {
-  background: var(--select-background);
-  color: var(--main-color);
+  background: #02020f;
+  color: #fff;
 }
 
 body {
@@ -17,4 +12,8 @@ body {
   height: 100%;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
