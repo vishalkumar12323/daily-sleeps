@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "./app/lib/config";
 import { comparePassword } from "./app/lib/data";
+import { v4 as uuid } from "uuid";
 
 export const {
   handlers: { GET, POST },
@@ -55,24 +56,36 @@ export const {
           response_type: "code",
         },
       },
+      async profile(profile) {
+        return {
+          id: profile.id,
+          email: profile.email,
+          name: profile.name,
+          image: profile.picture,
+        };
+      },
     }),
   ],
   callbacks: {
-    async signIn({ account, user, profile }) {
-      return true;
-    },
-    async jwt({ token, user, trigger }) {
+    async jwt({ token, user, profile, account, session }) {
       if (user) {
         return {
           ...token,
           id: user.id,
+          googleId: profile?.sub,
         };
       }
       return token;
     },
     //@ts-ignore
     async session({ session, token }) {
-      if (token) {
+      const { user } = session;
+
+      const existingUser = await prisma.user.findUnique({
+        where: { email: user.email },
+      });
+
+      if (existingUser && token) {
         return {
           ...session,
           user: {
@@ -80,11 +93,28 @@ export const {
             id: token.id,
           },
         };
+      } else {
+        const id = uuid();
+        await prisma.user.create({
+          data: {
+            id,
+            email: user.email,
+            name: user.name,
+            profileImage: user.image,
+            googleId: token.sub,
+          },
+        });
       }
-      return session;
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+        },
+      };
     },
   },
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.AUTH_SECRET as string,
   session: {
     strategy: "jwt",
     maxAge: 60 * 10080, // 7days

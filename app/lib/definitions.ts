@@ -1,10 +1,12 @@
 import { z } from "zod";
 export type User = {
   id?: string;
-  name?: string;
-  email?: string;
-  password?: string;
-};
+  name?: string | null;
+  email?: string | null;
+  profileImage?: string | null;
+  password?: string | null;
+  googleId?: string | null;
+} | null;
 
 export type UserSleepData = {
   id?: string;
@@ -16,14 +18,14 @@ export type UserSleepData = {
 export type FormattedSleepData = {
   currentDay: string[];
   nextDay: string[];
-  sleepDuration: { hours: number; minutes: number, timeInMinutes:number };
-
+  sleepDuration: { hours: number; minutes: number; timeInMinutes: number };
 };
 
 export type errorMessageProps = {
   name?: string[] | undefined;
   email?: string[] | undefined;
   password?: string[] | undefined;
+  message?: string | undefined;
 };
 
 export const FormSchema = z.object({

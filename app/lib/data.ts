@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "./config";
-import { UserSleepData } from "./definitions";
+import { UserSleepData, User } from "./definitions";
 
 // function to hash password
 export async function hashPassword(password: string): Promise<string> {
@@ -29,5 +29,15 @@ export async function fetchUserSleepRecord(
   } catch (error) {
     console.error(error);
     return [];
+  }
+}
+
+export async function fetchCurrentUser(email: string): Promise<User> {
+  try {
+    const currentUser = await prisma.user.findUnique({ where: { email } });
+    return currentUser;
+  } catch (error) {
+    console.log("user not found ", { error });
+    return null;
   }
 }

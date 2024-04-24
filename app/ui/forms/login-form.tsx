@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import Input from "./input";
 import Label from "./label";
 import Image from "next/image";
@@ -35,6 +34,14 @@ export default function LoginForm() {
       redirect: false,
     });
 
+    if (response?.error) {
+      setErrorMessage((preError) => {
+        return {
+          ...preError,
+          message: "invalid email or password",
+        };
+      });
+    }
     if (response?.ok) {
       router.replace("/home");
       router.refresh();
@@ -72,6 +79,9 @@ export default function LoginForm() {
             />
             <InputError id="password" error={errorMessage?.password} />
           </div>
+          {errorMessage?.message && (
+            <p className="text-sm text-red-500 pl-2">{errorMessage.message}</p>
+          )}
           <div className="py-3 mt-1">
             <Button type="submit" className=" w-full">
               Login

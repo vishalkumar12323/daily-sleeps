@@ -4,12 +4,11 @@ import Input from "./input";
 import Label from "./label";
 import { lusitana } from "@/app/lib/fonts";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { Button } from "../components/button";
+import { User } from "@/app/lib/definitions";
 
-export default function EntriesForm() {
+export default function EntriesForm({ currentUser }: { currentUser: User }) {
   const router = useRouter();
-  const session = useSession();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -17,7 +16,7 @@ export default function EntriesForm() {
 
     const newData = {
       ...data,
-      id: session.data?.user?.id,
+      id: currentUser?.id,
     };
     const response = await fetch("/api/entries", {
       headers: { "Content-Type": "application/json" },
