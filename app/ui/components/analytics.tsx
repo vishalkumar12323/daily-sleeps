@@ -19,7 +19,7 @@ export default function Analytic({
           </tr>
         </thead>
         <tbody>
-          {userSleepData &&
+          {userSleepData ? (
             userSleepData.map((value, index) => {
               const {
                 currentDay,
@@ -73,7 +73,12 @@ export default function Analytic({
                   </td>
                 </tr>
               );
-            })}
+            })
+          ) : (
+            <>
+              <h1 className="text-xl font-medium">No Data Found</h1>
+            </>
+          )}
         </tbody>
       </table>
     </main>

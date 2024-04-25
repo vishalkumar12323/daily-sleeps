@@ -1,14 +1,11 @@
 import Analytic from "@/app/ui/components/analytics";
 import Graph from "@/app/ui/components/graph";
-import { fetchUserSleepRecord, fetchCurrentUser } from "@/app/lib/data";
+import { fetchUserSleepRecord } from "@/app/lib/data";
 import { auth } from "@/auth";
 
 export default async function HomePage() {
   const session = await auth();
-
-  const currentUser = await fetchCurrentUser(session?.user?.email as string);
-
-  const userSleepData = await fetchUserSleepRecord(currentUser?.id as string);
+  const userSleepData = await fetchUserSleepRecord(session?.user?.id as string);
 
   return (
     <section className="max-w-screen-lg mx-auto flex items-start flex-col md:flex-row my-3 md:my-10 h-[90vh] gap-4">

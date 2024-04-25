@@ -5,7 +5,6 @@ export type User = {
   email?: string | null;
   profileImage?: string | null;
   password?: string | null;
-  googleId?: string | null;
 } | null;
 
 export type UserSleepData = {

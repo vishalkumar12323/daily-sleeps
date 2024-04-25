@@ -25,7 +25,6 @@ model User {
   email        String?   @unique
   password     String?
   profileImage String?   @map("profile_image")
-  googleId     String?   @map("google_id")
   entry        Entries[]
 
   @@map("users")

@@ -67,12 +67,11 @@ export const {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, profile, account, session }) {
+    async jwt({ token, user }) {
       if (user) {
         return {
           ...token,
-          id: user.id,
-          googleId: profile?.sub,
+          googleId: token.googleId,
         };
       }
       return token;
@@ -90,26 +89,25 @@ export const {
           ...session,
           user: {
             ...session.user,
-            id: token.id,
+            id: existingUser.id,
           },
         };
-      } else {
-        const id = uuid();
-        await prisma.user.create({
-          data: {
-            id,
-            email: user.email,
-            name: user.name,
-            profileImage: user.image,
-            googleId: token.sub,
-          },
-        });
       }
+      const id = uuid();
+      const newUser = await prisma.user.create({
+        data: {
+          id,
+          email: user.email,
+          name: user.name,
+          profileImage: user.image,
+        },
+      });
+      console.log({ session });
       return {
         ...session,
         user: {
           ...session.user,
-          id: token.id,
+          id: newUser.id,
         },
       };
     },
