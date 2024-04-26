@@ -3,7 +3,7 @@ import { lusitana } from "@/app/lib/fonts";
 import { Button } from "./ui/components/button";
 import Image from "next/image";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
@@ -30,10 +30,7 @@ export default function HomePage() {
             <span className="text-xl">Register</span>{" "}
             <ArrowLongRightIcon width={30} />
           </Link>
-          <Button
-            className="py-3 flex justify-center items-center gap-2 font-medium text-xl"
-            onClick={() => signIn("google")}
-          >
+          <Button className="py-3 flex justify-center items-center gap-2 font-medium text-xl">
             {" "}
             <Image
               src="/google.svg"

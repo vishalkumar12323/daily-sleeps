@@ -3,7 +3,7 @@ import Graph from "@/app/ui/components/graph";
 import { fetchUserSleepRecord } from "@/app/lib/data";
 import { auth } from "@/auth";
 
-export default async function HomePage() {
+export default async function HomePage(): Promise<JSX.Element> {
   const session = await auth();
   const userSleepData = await fetchUserSleepRecord(session?.user?.id as string);
 

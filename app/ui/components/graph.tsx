@@ -97,10 +97,7 @@ export default function Graph({
       data={data}
       //@ts-ignore
       options={options}
+      key="GraphTable"
     />
   );
-}
-
-{
-  /* <GraphSkeleton /> */
 }

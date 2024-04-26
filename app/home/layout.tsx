@@ -1,6 +1,5 @@
-"use client";
 import Navbar from "@/app/ui/components/navbar";
-import Footer from "../ui/components/footer";
+import Footer from "@/app/ui/components/footer";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -8,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="w-full">
         <header className="bg-gray-50 shadow">
           <Navbar />
-        </header>
+        </header>{" "}
         {children}
         <footer className="bg-gray-50">
           <Footer />
