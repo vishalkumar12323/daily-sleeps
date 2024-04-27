@@ -8,6 +8,8 @@ import { v4 as uuid } from "uuid";
 export const {
   handlers: { GET, POST },
   auth,
+  signIn,
+  signOut,
 } = NextAuth({
   pages: {
     signIn: "/login",
@@ -66,7 +68,11 @@ export const {
       },
     }),
   ],
+
   callbacks: {
+    redirect: async function ({ baseUrl }) {
+      return baseUrl + "/home";
+    },
     async jwt({ token, user }) {
       if (user) {
         return {
