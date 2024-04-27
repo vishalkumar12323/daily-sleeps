@@ -32,6 +32,7 @@ export default function LoginForm() {
       email,
       password,
       redirect: false,
+      callbackUrl: "/home",
     });
 
     if (response?.error) {
@@ -41,10 +42,6 @@ export default function LoginForm() {
           message: "invalid email or password",
         };
       });
-    }
-    if (response?.ok) {
-      router.replace("/home");
-      router.refresh();
     }
   };
   return (
@@ -91,7 +88,12 @@ export default function LoginForm() {
         <div className="py-3 w-full">
           <Button
             className="w-full flex justify-center items-center gap-2"
-            onClick={() => signIn("google")}
+            onClick={() =>
+              signIn("google", {
+                redirect: false,
+                callbackUrl: "/home",
+              })
+            }
           >
             <Image src="/google.svg" width={20} height={20} alt="google icon" />{" "}
             continue with google

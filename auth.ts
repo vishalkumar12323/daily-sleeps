@@ -70,9 +70,6 @@ export const {
   ],
 
   callbacks: {
-    redirect: async function ({ baseUrl }) {
-      return baseUrl + "/home";
-    },
     async jwt({ token, user }) {
       if (user) {
         return {
