@@ -6,7 +6,7 @@ import { lusitana } from "@/app/lib/fonts";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Button } from "../components/button";
+import { Button, ButtonLink } from "../components/button";
 import { errorMessageProps, FormSchema } from "@/app/lib/definitions";
 import InputError from "./input-error";
 
@@ -32,7 +32,7 @@ export default function LoginForm() {
       email,
       password,
       redirect: false,
-      callbackUrl: "/home",
+      callbackUrl: "/",
     });
 
     if (response?.error) {
@@ -46,7 +46,7 @@ export default function LoginForm() {
   };
   return (
     <section
-      className={`${lusitana.className} w-full h-[100vh] flex justify-center items-center`}
+      className={`${lusitana.className} w-full h-[90vh] flex justify-center items-center`}
     >
       <div className="w-[90%] md:w-[34%] h-auto bg-gray-100 rounded-md p-3">
         <h3 className="text-2xl font-normal mt-3">Log in to continue</h3>
@@ -85,19 +85,41 @@ export default function LoginForm() {
             </Button>
           </div>
         </form>
-        <div className="py-3 w-full">
+        <div className="py-2 w-full">
           <Button
             className="w-full flex justify-center items-center gap-2"
             onClick={() =>
               signIn("google", {
                 redirect: false,
-                callbackUrl: "/home",
+                callbackUrl: "/",
               })
             }
           >
             <Image src="/google.svg" width={20} height={20} alt="google icon" />{" "}
-            continue with google
+            login with google
           </Button>
+        </div>
+        <div className="py-3 w-full">
+          <Button
+            className="w-full flex justify-center items-center gap-2"
+            onClick={() =>
+              signIn("github", {
+                redirect: false,
+                callbackUrl: "/",
+              })
+            }
+          >
+            <Image src="/github.svg" width={20} height={20} alt="google icon" />{" "}
+            login with github
+          </Button>
+        </div>
+        <div>
+          <ButtonLink link="/register" className="pt-4">
+            don't have account!{" "}
+            <span className="hover:text-blue-500 hover:underline">
+              click here
+            </span>{" "}
+          </ButtonLink>
         </div>
       </div>
     </section>

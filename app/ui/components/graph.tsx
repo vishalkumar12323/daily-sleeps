@@ -85,6 +85,7 @@ export default function Graph({
         hoverBackgroundColor: "#030211",
         barPercentage: 0.6,
         barThickness: "flex",
+        maxBarThickness: 32,
         borderRadius: 5,
       },
     ],

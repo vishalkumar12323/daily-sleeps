@@ -25,13 +25,13 @@ export default function EntriesForm() {
       body: JSON.stringify(newData),
     });
     if (response.ok) {
-      router.push("/home");
+      router.push("/");
       router.refresh();
     }
   };
   return (
     <section
-      className={`${lusitana.className} flex justify-center items-center w-full h-[80vh] p-2`}
+      className={`${lusitana.className} flex justify-center items-center w-full h-[80vh] p-2 my-10`}
     >
       <div className="bg-gray-100 w-[90%] md:w-[40%] h-full rounded-md">
         <div className="pt-8 px-4">

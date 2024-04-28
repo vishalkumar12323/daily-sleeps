@@ -1,55 +1,31 @@
-"use client";
-import { lusitana } from "@/app/lib/fonts";
-import { Button } from "./ui/components/button";
-import Image from "next/image";
-import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
-import { signIn, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import Link from "next/link";
+import Analytic from "@/app/ui/components/analytics";
+import Graph from "@/app/ui/components/graph";
+import { fetchUserSleepRecord } from "@/app/lib/data";
+import { auth } from "@/auth";
 
-export default function HomePage() {
-  const { data: session } = useSession();
-
-  if (session) {
-    return redirect("/home");
-  }
+export default async function HomePage() {
+  const session = await auth();
+  const userSleepData = await fetchUserSleepRecord(session?.user?.id as string);
   return (
-    <section
-      className={`${lusitana.className} w-full h-[100vh] flex items-center`}
-    >
-      <div className="w-full md:max-w-screen-lg flex justify-center items-center flex-col gap-8 mx-auto">
-        <h1 className="text-[2.5rem] md:text-7xl md:px-0 text-start md:text-center  w-[90%] md:w-full font-semibold capitalize md:leading-[1.3]">
-          welcome to sleepee. <br /> com make your day more expensive and <br />
-          sleep better.
-        </h1>
-        <div className="mt-3 flex gap-4 flex-col md:flex-row w-[90%] md:w-full justify-start md:justify-center">
-          <Link
-            href="/register"
-            className="font-medium flex w-full md:w-48 justify-between items-center py-3 px-10 text-white capitalize rounded-md bg-black hover:bg-slate-900 focus:bg-slate-900 shadow-md "
-          >
-            <span className="text-xl">Register</span>{" "}
-            <ArrowLongRightIcon width={30} />
-          </Link>
-          <Button
-            className="py-3 flex justify-center items-center gap-2 font-medium text-xl"
-            onClick={() =>
-              signIn("google", {
-                redirect: false,
-                callbackUrl: "/home",
-              })
-            }
-          >
-            {" "}
-            <Image
-              src="/google.svg"
-              width={20}
-              height={20}
-              alt="google icon"
-            />{" "}
-            login with google
-          </Button>
-        </div>
-      </div>
-    </section>
+    <>
+      {userSleepData && session ? (
+        <section className="max-w-screen-lg mx-auto flex items-start flex-col md:flex-row my-3 md:my-10 h-[90vh] gap-4">
+          <div className="w-full md:w-1/2 h-full flex items-center justify-center bg-gray-50 shadow rounded-md">
+            {userSleepData && <Graph userSleepData={userSleepData} />}
+          </div>
+          <div className="w-full md:w-1/2 h-full flex items-center justify-center bg-gray-50 rounded-md shadow">
+            {userSleepData && <Analytic userSleepData={userSleepData} />}
+          </div>
+        </section>
+      ) : (
+        <section className="max-w-screen-lg mx-auto flex items-center justify-center my-3 bg-gray-50 h-[90vh] shadow">
+          <h3 className="text-center text-[2.50rem] font-medium w-2/3 capitalize">
+            welcome to daily-sleeps <br />{" "}
+            <span className="text-4xl">make your day enjoyable</span> <br />{" "}
+            <span className="text-4xl">and sleep batter</span>
+          </h3>
+        </section>
+      )}
+    </>
   );
 }
