@@ -1,7 +1,9 @@
 import Analytic from "@/app/ui/components/analytics";
 import Graph from "@/app/ui/components/graph";
 import { fetchUserSleepRecord } from "@/app/lib/data";
+import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import { auth } from "@/auth";
+import { ButtonLink } from "./ui/components/button";
 
 export default async function HomePage() {
   const session = await auth();
@@ -18,12 +20,22 @@ export default async function HomePage() {
           </div>
         </section>
       ) : (
-        <section className="max-w-screen-lg mx-auto flex items-center justify-center my-3 bg-gray-50 h-[90vh] shadow">
+        <section className="max-w-screen-lg mx-auto flex items-center justify-center flex-col my-3 bg-gray-50 h-[90vh] shadow">
           <h3 className="text-center text-[2.50rem] font-medium w-2/3 capitalize">
-            welcome to daily-sleeps <br />{" "}
+            {/* welcome to daily-sleeps <br />{" "}
             <span className="text-4xl">make your day enjoyable</span> <br />{" "}
-            <span className="text-4xl">and sleep batter</span>
+            <span className="text-4xl">and sleep batter</span> */}
+            welcome to daily-sleeps make <br /> your day more expensive <br />{" "}
+            and sleep better.
           </h3>
+
+          <ButtonLink
+            link="/login"
+            className="mt-5 capitalize rounded-md transition-colors bg-black hover:bg-slate-950 focus:bg-slate-900 shadow-md py-3 px-12 text-xl text-white flex gap-2"
+          >
+            Login
+            <ArrowLongRightIcon width={30} />
+          </ButtonLink>
         </section>
       )}
     </>

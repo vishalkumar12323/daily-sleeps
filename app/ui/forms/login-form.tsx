@@ -35,6 +35,10 @@ export default function LoginForm() {
       callbackUrl: "/",
     });
 
+    if (response?.ok) {
+      router.replace(response?.url as string);
+      router.refresh();
+    }
     if (response?.error) {
       setErrorMessage((preError) => {
         return {
@@ -109,16 +113,16 @@ export default function LoginForm() {
               })
             }
           >
-            <Image src="/github.svg" width={20} height={20} alt="google icon" />{" "}
+            <Image src="/github.svg" width={20} height={20} alt="google icon" />
             login with github
           </Button>
         </div>
         <div>
           <ButtonLink link="/register" className="pt-4">
-            don't have account!{" "}
+            don&apos;t have account!
             <span className="hover:text-blue-500 hover:underline">
               click here
-            </span>{" "}
+            </span>
           </ButtonLink>
         </div>
       </div>

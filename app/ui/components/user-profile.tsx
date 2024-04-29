@@ -1,11 +1,10 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
-import { PowerIcon, ArrowLongRightIcon } from "@heroicons/react/24/outline";
+import { PowerIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Button } from "./button";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function UserProfile() {
   const [active, setActive] = useState(false);
@@ -52,7 +51,7 @@ export default function UserProfile() {
                     signOut();
                   }}
                 >
-                  <PowerIcon />
+                  <PowerIcon width={25} />
                   Logout
                 </Button>
               </ul>
@@ -60,13 +59,14 @@ export default function UserProfile() {
           )}
         </>
       ) : (
-        <Link
-          href="/login"
-          className="py-2 px-8 rounded-md shadow-md text-white text-xl font-medium flex justify-between items-center gap-2 bg-black hover:bg-slate-900"
-        >
-          Login
-          <ArrowLongRightIcon width={30} />
-        </Link>
+        <div className="flex gap-2 justify-center items-center">
+          <div>
+            <span className="font-medium">Guest</span>
+          </div>
+          <button className="w-fit rounded-full">
+            <UserCircleIcon width={35} />
+          </button>
+        </div>
       )}
     </>
   );

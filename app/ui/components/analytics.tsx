@@ -76,7 +76,11 @@ export default function Analytic({
             })
           ) : (
             <>
-              <h1 className="text-xl font-medium text-center">No Data Found</h1>
+              <div className="w-full h-full flex justify-center item-center">
+                <h1 className="text-xl font-medium text-center">
+                  No Data Found
+                </h1>
+              </div>
             </>
           )}
         </tbody>
