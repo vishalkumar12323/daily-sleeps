@@ -26,6 +26,10 @@ export async function POST(req: NextRequest) {
         password: hashedPassword,
       },
     });
+
+    if (newUser) {
+      return NextResponse.redirect(new URL("/login", req.url));
+    }
   } catch (error) {
     //for dev.
     console.error(error);

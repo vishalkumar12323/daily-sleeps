@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
+import { PowerIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Button } from "./button";
 import Image from "next/image";
@@ -10,7 +11,7 @@ export default function UserProfile() {
   const { data: session } = useSession();
   return (
     <>
-      {session?.user && (
+      {session?.user ? (
         <>
           <main className=" h-auto flex gap-3 justify-center items-center ">
             <div>
@@ -45,17 +46,27 @@ export default function UserProfile() {
                   Hi, {session?.user?.name}
                 </li>
                 <Button
-                  className="w-full py-2 px-4 hover:bg-slate-50 capitalize text-[16px] font-normal"
+                  className="w-full py-2 px-4 hover:bg-slate-50 capitalize text-[16px] font-normal flex justify-center items-center gap-2"
                   onClick={() => {
                     signOut();
                   }}
                 >
+                  <PowerIcon width={25} />
                   Logout
                 </Button>
               </ul>
             </section>
           )}
         </>
+      ) : (
+        <div className="flex gap-2 justify-center items-center">
+          <div>
+            <span className="font-medium">Guest</span>
+          </div>
+          <button className="w-fit rounded-full">
+            <UserCircleIcon width={35} />
+          </button>
+        </div>
       )}
     </>
   );

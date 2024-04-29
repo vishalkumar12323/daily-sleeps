@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-  matcher: ["/home", "/home/:path*"],
+  matcher: ["/entry"],
 };
 
 export default async function middleware(req: NextRequest) {

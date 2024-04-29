@@ -41,9 +41,18 @@ export default function SignupForm() {
       }),
     });
 
-    if (response.ok) {
-      router.replace("/login");
+    if (response?.ok) {
+      router.replace(response?.url as string);
       router.refresh();
+    }
+
+    if (!response.ok) {
+      setErrorMessage((preError) => {
+        return {
+          ...preError,
+          message: "server error, try again",
+        };
+      });
     }
   };
 
@@ -90,6 +99,13 @@ export default function SignupForm() {
               errormessage={errorMessage?.password}
             />
             <InputError id="password" error={errorMessage?.password} />
+          </div>
+          <div>
+            {errorMessage?.message && (
+              <p className="text-sm text-red-500 pl-2">
+                {errorMessage.message}
+              </p>
+            )}
           </div>
           <div className="py-2">
             <Button

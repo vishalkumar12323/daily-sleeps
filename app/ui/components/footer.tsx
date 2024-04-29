@@ -10,7 +10,7 @@ export default function Footer() {
             &copy; Copyright {new Date().getFullYear()}. All Right Reserverd{" "}
           </p>
           <Link href="#" className="text-sm capitalize">
-            vishal kumar
+            daily-sleeps
           </Link>
         </div>
       </div>

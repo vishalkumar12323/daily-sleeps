@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
 import { prisma } from "./app/lib/config";
 import { comparePassword } from "./app/lib/data";
 import { v4 as uuid } from "uuid";
@@ -66,6 +67,11 @@ export const {
           image: profile.picture,
         };
       },
+    }),
+
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
     }),
   ],
 
