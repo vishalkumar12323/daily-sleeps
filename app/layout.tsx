@@ -8,10 +8,7 @@ import Navbar from "./ui/components/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Daily-Sleeps",
-    template: "%s | Daily-Sleeps",
-  },
+  title: "Daily-Sleeps",
   description:
     "welcome to daily-sleeps make  your day more expensive and sleep better.",
 };
