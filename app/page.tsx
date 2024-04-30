@@ -22,9 +22,6 @@ export default async function HomePage() {
       ) : (
         <section className="max-w-screen-lg mx-auto flex items-center justify-center flex-col my-3 bg-gray-50 h-[90vh] shadow">
           <h3 className="text-center text-[2.50rem] font-medium w-2/3 capitalize">
-            {/* welcome to daily-sleeps <br />{" "}
-            <span className="text-4xl">make your day enjoyable</span> <br />{" "}
-            <span className="text-4xl">and sleep batter</span> */}
             welcome to daily-sleeps make <br /> your day more expensive <br />{" "}
             and sleep better.
           </h3>

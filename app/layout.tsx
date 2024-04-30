@@ -9,7 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Daily-Sleeps",
-  description: "Track Your Daily Sleeps Record",
+  description:
+    "welcome to daily-sleeps make your day more expensive and sleep better.",
 };
 
 export default function RootLayout({

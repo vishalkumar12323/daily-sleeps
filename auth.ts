@@ -74,7 +74,23 @@ export const {
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
     }),
   ],
-
+  cookies: {
+    sessionToken: {
+      name: "session_token",
+      options: {
+        httpOnly: true,
+      },
+    },
+    csrfToken: {
+      name: "csrf_token",
+      options: {
+        httpOnly: true,
+      },
+    },
+    callbackUrl: {
+      name: "callback_url",
+    },
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
