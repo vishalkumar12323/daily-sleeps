@@ -5,7 +5,7 @@ export const config = {
 };
 
 export default async function middleware(req: NextRequest) {
-  const session = req.cookies.get("authjs.session-token")?.value;
+  const session = req.cookies.get("session_token")?.value;
 
   if (!session) {
     return NextResponse.redirect(new URL("/login", req.url));
